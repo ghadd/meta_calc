@@ -15,7 +15,7 @@ operations = {
 tokens = str(input()).split()
 a, sign, b = tokens
 a, b = float(a), float(b)
-
+r = "undefined"
 
 {% for pair in pairs %} {% set a = pair[0] %} {% set b = pair[1] %}
 for s, op in operations.items():

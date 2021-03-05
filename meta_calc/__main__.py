@@ -37,6 +37,7 @@ def create_calc(boundaries=Tuple[float, float], step: float = 1e-1,
         print("File path: {}".format(str(Path(filename).absolute())))
         print("File size: {}".format(naturalsize(Path(filename).stat().st_size)))
         print("Took {} to render and save".format(naturaltime(end - start)))
+        print("Your numbers must be in range of [{};{})".format(*boundaries))
 
 
 if __name__ == "__main__":
@@ -46,5 +47,8 @@ if __name__ == "__main__":
         filename = DEFAULT_PATH
 
     create_calc((-10, 10), filename=filename, verbose="-v" in sys.argv)
-    print("Running generated script (ex. 1.2 + 2.4)")
-    exec(open(filename).read())
+    print("Running generated script (ex. 1.2 + 2.4)...")
+    try:
+        exec(open(filename).read())
+    except Exception as e:
+        print("Ah... error occured.")
