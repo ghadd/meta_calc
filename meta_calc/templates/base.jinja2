@@ -1,0 +1,26 @@
+from math import isclose
+from operator import add, sub, mul, truediv as div
+
+def close(a, a0):
+    return isclose(a, a0, abs_tol={{abs_tol}})
+
+operations = {
+    '+': add,
+    '-': sub,
+    '*': mul,
+    '/': div
+}
+
+
+tokens = str(input()).split()
+a, sign, b = tokens
+a, b = float(a), float(b)
+
+
+{% for pair in pairs %} {% set a = pair[0] %} {% set b = pair[1] %}
+for s, op in operations.items():
+    if close(a, {{ a }}) and close(b, {{ b }}) and sign == s:
+        r = op(a, b)
+{% endfor %}
+
+print("Result is {}.".format(r))
